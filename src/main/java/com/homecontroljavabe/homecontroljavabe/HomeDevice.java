@@ -2,6 +2,7 @@ package com.homecontroljavabe.homecontroljavabe;
 
 import org.springframework.data.annotation.Id;
 
+
 public class HomeDevice {
 	
 	@Id
@@ -9,12 +10,14 @@ public class HomeDevice {
 	private String deviceName;
 	private String deviceType;
 	private String deviceStatus;
+	private boolean isOn;
 
-	public HomeDevice(String deviceId, String deviceName, String deviceType, String deviceStatus) {
+	public HomeDevice(String deviceId, String deviceName, String deviceType, String deviceStatus, boolean isOn) {
 		this.deviceId = deviceId;
 		this.deviceName = deviceName;
 		this.deviceType = deviceType;
 		this.deviceStatus = deviceStatus;
+		this.isOn = isOn;
 	}
 
 	public String getDeviceId() {
@@ -47,6 +50,14 @@ public class HomeDevice {
 
 	public void setDeviceStatus(String deviceStatus) {
 		this.deviceStatus = deviceStatus;
+	}
+
+	public boolean isOn() {
+		return isOn;
+	}
+
+	public void setOn(boolean isOn) {
+		this.isOn = isOn;
 	}
 
 	
