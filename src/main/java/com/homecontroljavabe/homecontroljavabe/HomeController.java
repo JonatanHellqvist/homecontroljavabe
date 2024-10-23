@@ -41,8 +41,6 @@ public class HomeController {
 
 	@PostMapping("/add-all-home-devices")
 	public List<HomeDevice> postAllHomeDevicesToDb(@RequestBody List<HomeDevice> devices) {
-		
-		
 		return homeService.addHomeDevices(devices);
 	}
 	
