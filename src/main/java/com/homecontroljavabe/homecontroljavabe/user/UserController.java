@@ -1,6 +1,8 @@
 package com.homecontroljavabe.homecontroljavabe.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import com.homecontroljavabe.homecontroljavabe.user.UserService;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,19 +20,23 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@PostMapping("/register")
+	@PostMapping("/user/register")
 	public User addUser(@RequestBody User user) {
 		return userService.addUser(user);
 	}
 
-	// @PostMapping
-	// public ResponseEntity<String> registerUser(@RequestBody User user) {
-	// 	try {
-	// 		userService.registerUser(user);
-	// 		return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
-	// 	} catch (Exception e) {
-	// 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-	// 	}
-	// }
+	@PostMapping("/user/login")
+    public ResponseEntity<User> login(@RequestBody User user) {
+        User loggedInUser = userService.getUserByUsername(user.getUsername());
+        
+        //kolla om user inte är null och password stämmer med getpassword för usern. veryfypassword metod för att kolla mot bcrypt
+        if (loggedInUser != null && userService.verifyPassword(user.getPassword(), loggedInUser.getPassword())) {
+            return ResponseEntity.ok(loggedInUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+    }
+
+	
 	
 }

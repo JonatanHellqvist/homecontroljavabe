@@ -6,15 +6,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="users")
 public class User {
 	@Id
-	private String userId;
+	private String id;
 	private String username;
 	private String password;
 
 	public String getUserId() {
-		return userId;
+		return id;
 	}
 	public void setUserId(String userId) {
-		this.userId = userId;
+		this.id = userId;
 	}
 	public String getUsername() {
 		return username;
