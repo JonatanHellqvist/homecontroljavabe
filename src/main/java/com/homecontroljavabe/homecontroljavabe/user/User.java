@@ -3,6 +3,11 @@ package com.homecontroljavabe.homecontroljavabe.user;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.homecontroljavabe.homecontroljavabe.device.Device;
+
+import java.util.List;
+import java.util.ArrayList;
+
 @Document(collection="users")
 public class User {
 	@Id
@@ -10,6 +15,9 @@ public class User {
 	private String username;
 	private String password;
 	private String bridgeIp;
+
+	private List <Device> deviceList = new ArrayList<>();
+
 
 	public String getUserId() {
 		return id;
@@ -31,6 +39,12 @@ public class User {
 	}
 	public String getUsername() {
 		return username;
+	}
+	public List<Device> getDeviceList() {
+		return deviceList;
+	}
+	public void setDeviceList(List<Device> deviceList) {
+		this.deviceList = deviceList;
 	}
 	public void setUsername(String username) {
 		this.username = username;
