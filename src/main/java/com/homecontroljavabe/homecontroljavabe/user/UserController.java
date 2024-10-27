@@ -1,13 +1,19 @@
 package com.homecontroljavabe.homecontroljavabe.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.aggregation.VariableOperators.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import com.homecontroljavabe.homecontroljavabe.user.UserService;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -37,6 +43,23 @@ public class UserController {
         }
     }
 
-	
-	
+	@GetMapping("/user/bridgeip/{id}")
+	public String getBridgeIp(@PathVariable String id) {
+		return userService.getBridgeIp(id);
+	}
+
+	@PutMapping("/user/bridgeip/{id}")
+	public ResponseEntity<String> updateBridgeIp(@PathVariable String id, @RequestBody String newBridgeIp) {
+		System.out.println("Received PUT request for user ID: " + id + " with new Bridge IP: " + newBridgeIp);
+		userService.setBridgeIp(id, newBridgeIp);
+		return ResponseEntity.ok("{\"message\": \"Bridge IP updated successfully\"}");
 }
+
+
+
+		
+	}
+	
+	
+
+

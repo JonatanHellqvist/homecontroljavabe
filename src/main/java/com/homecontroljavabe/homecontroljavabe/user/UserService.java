@@ -26,6 +26,7 @@ public class UserService {
 
 	public User addUser(User user) {
 		String passwordHash = passwordEncoder.encode(user.getPassword());
+		user.setBridgeIp("Please configure Bridge connection");
 		user.setPassword(passwordHash);
 		return mongoOperations.insert(user);
 	}
@@ -45,6 +46,34 @@ public class UserService {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("username").is(username));
 		return mongoOperations.findOne(query, User.class);
+	}
+
+	// public String getUserBridgeIp(String id) {
+	// 	User user = mongoOperations.findById(id, User.class);
+	// 	return (user != null) ? user.getBridgeIp() : null;
+	// }
+
+	public String getBridgeIp(String id) {
+		User user = mongoOperations.findById(id, User.class);
+		if (user != null) {
+			System.out.println(user.getBridgeIp());
+			return user.getBridgeIp();
+		}
+		return null; 
+	}
+
+	public void setBridgeIp(String id, String newBridgeIp) {
+		User user = mongoOperations.findById(id, User.class);
+		
+		System.out.println("Fetching user: " + id); 
+		System.out.println("New Bridge IP: " + newBridgeIp); 
+		if (user != null) {
+			System.out.println("User found: " + user); 
+			user.setBridgeIp(newBridgeIp);
+			mongoOperations.save(user); 
+		} else {
+			System.out.println("User not found with ID: " + id); 
+		}
 	}
 
 	

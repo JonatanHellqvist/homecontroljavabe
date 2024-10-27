@@ -9,9 +9,22 @@ public class User {
 	private String id;
 	private String username;
 	private String password;
+	private String bridgeIp;
 
 	public String getUserId() {
 		return id;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getBridgeIp() {
+		return bridgeIp;
+	}
+	public void setBridgeIp(String bridgeIp) {
+		this.bridgeIp = bridgeIp;
 	}
 	public void setUserId(String userId) {
 		this.id = userId;
