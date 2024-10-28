@@ -1,6 +1,8 @@
 package com.homecontroljavabe.homecontroljavabe.device;
 
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 
 import org.springframework.stereotype.Service;
 
@@ -42,4 +44,46 @@ public class DeviceService {
         }
         return null;
     }
+
+	public Device getDeviceById(String deviceId, String userId) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("_id").is(deviceId).and("userId").is(userId));
+		return mongoOperations.findOne(query, Device.class);
+	}
+
+	public Device getDeviceByHueIndex(int hueIndex, String userId) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("hueIndex").is(hueIndex).and("userId").is(userId));
+		return mongoOperations.findOne(query, Device.class);
+	}
+	
+
+//  public ResponseEntity<String> toggleDevice(String userId, int hueIndex, Map<String, Boolean> state) {
+        
+//         Device device = getDeviceByHueIndex(hueIndex, userId);
+
+//         if (device == null) {
+//             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User not authorized for this device");
+//         }
+
+//         boolean newState = state.getOrDefault("on", false);
+        
+//         //Här uppdaterar vi tillståndet i deviceData
+//         Document deviceData = Document.parse(device.getDeviceData());
+//         deviceData.put("state", new Document("on", newState)); // Uppdatera tillståndet
+
+//         //Utför uppdateringen i databasen
+//         UpdateResult updateResult = mongoOperations.updateFirst(
+//             Query.query(Criteria.where("_id").is(device.getId())),
+//             Update.update("deviceData", deviceData.toJson()), // Spara som JSON-sträng
+//             Device.class
+//         );
+
+//         if (updateResult.getMatchedCount() == 0) {
+//             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update device status");
+//         }
+
+//         return ResponseEntity.ok("Device toggled successfully");
+//     }
 }
+

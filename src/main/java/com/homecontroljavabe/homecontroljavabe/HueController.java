@@ -51,8 +51,9 @@ public class HueController {
 	return ResponseEntity.ok(response.getBody());
 	} 
 
-	
 
+	//ANVÄNDS TILLSVIDARE
+	//något enkelt som sätter on eller off i databasen också
 	//Uppdatera state värdet mot Hues API
 	@PutMapping("/{lightId}/state")
 	//tar emot light idt och dess state från frontenden
@@ -98,6 +99,8 @@ public class HueController {
     
     return ResponseEntity.ok(response.getBody());
 }
+
+
 		
 }
 	
