@@ -20,16 +20,6 @@ public class DeviceController {
         this.deviceService = deviceService;
     }
 
-	// @PostMapping("/post-new-device")
-	// public Device postNewUserDeviceToDb(@RequestBody Device device) {
-	// 	return deviceService.addNewDevice(device);
-	// }
-	
-	// @GetMapping("/get-all-devices")
-	// public List<Device> getAllDevicesFromDb() {
-	// 	return deviceService.getAllUserDevices();
-	// }
-
 	@PostMapping("/{userId}/list/adddevice")
     public Device addUserDevice(@PathVariable String userId, @RequestBody Device device) {
         return deviceService.addNewDevice(userId, device);
@@ -41,31 +31,3 @@ public class DeviceController {
 		return deviceService.getUserDevices(userId);
 	}
 }
-
-
-
-
-// @RestController
-// @CrossOrigin(origins = "*")
-// public class TempController {
-	
-// 	private TempService tempService;
-
-// 	public TempController(TempService tempService) {
-// 		this.tempService = tempService;
-// 	}
-
-// 	@PostMapping("/post-dht11-sensor-data")
-// 	public Temp postDht11SensorDataToDb(@RequestBody Temp temp) {
-// 		return tempService.addDht11SensorData(temp);
-// 	}
-
-// 	@GetMapping("/get-all-dht11-sensor-data")
-// 	public List<Temp> getAllDht11SensorDataFromDb() {
-// 		return tempService.getAllDht11SensorData();
-// 	}
-
-// 	@GetMapping("/get-latest-dht11-sensor-data")
-// 	public Temp getLatestDht11SensorData() {
-//     	return tempService.getLatestDht11SensorData();
-// }
