@@ -8,11 +8,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Device {
 	@Id
 	private String id;
+	private String userId;
+	//spara bara vissa värden för att göra mer lättläst
 	private String deviceData;
 	private int hueIndex;
 	
 	public String getId() {
 		return id;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public void setId(String id) {
 		this.id = id;

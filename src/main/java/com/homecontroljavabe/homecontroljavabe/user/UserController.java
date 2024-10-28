@@ -25,6 +25,10 @@ public class UserController {
 	public UserController(UserService userService) {
 		this.userService = userService;
 	}
+	@GetMapping("/user/{id}")
+	public User getUser(@PathVariable String id) {
+		return userService.getUser(id);
+	}
 
 	@PostMapping("/user/register")
 	public User addUser(@RequestBody User user) {
