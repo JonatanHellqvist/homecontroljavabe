@@ -10,17 +10,28 @@ public class Temp {
 	private String id;
 	private double celsius;
 	private double humidity;
+	private double photoTransistorValue;
 	private LocalDateTime timeStamp;
 
-	public Temp(String id, double celsius, double humidity, LocalDateTime timeStamp) {
+
+	public Temp(String id, double celsius, double humidity, double photoTransistorValue, LocalDateTime timeStamp) {
 		this.id = id;
 		this.celsius = celsius;
 		this.humidity = humidity;
+		this.photoTransistorValue = photoTransistorValue;
 		this.timeStamp = timeStamp;
 	}
 
 	public String getId() {
 		return id;
+	}
+
+	public double getPhotoTransistorValue() {
+		return photoTransistorValue;
+	}
+
+	public void setPhotoTransistorValue(double photoTransistorValue) {
+		this.photoTransistorValue = photoTransistorValue;
 	}
 
 	public void setId(String id) {
