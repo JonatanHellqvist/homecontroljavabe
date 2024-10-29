@@ -11,6 +11,7 @@ import java.util.Base64;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/hue")
 public class HueAuthController {
