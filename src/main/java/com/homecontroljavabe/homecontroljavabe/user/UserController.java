@@ -1,7 +1,7 @@
 package com.homecontroljavabe.homecontroljavabe.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.aggregation.VariableOperators.Map;
+// import org.springframework.data.mongodb.core.aggregation.VariableOperators.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Map;
 
 
 
@@ -59,6 +61,39 @@ public class UserController {
 		return ResponseEntity.ok("{\"message\": \"Bridge IP updated successfully\"}");
 }
 
+	@PutMapping("/user/tempsens/{userId}")
+	public ResponseEntity<String> updateTempSensSettings(@PathVariable String userId, @RequestBody Map <String, Integer> newTempSensSettings) {
+		System.out.println("Received PUT request for user ID: " + userId + " with new temp settings: " + newTempSensSettings);
+
+		int tempSensitivity = newTempSensSettings.getOrDefault("tempSensitivity", 0);
+		System.out.println("Sens " + tempSensitivity);
+    	int tempIndex = newTempSensSettings.getOrDefault("tempIndex", 0);
+		System.out.println("index " + tempIndex);
+		userService.setTempSettings(userId, tempIndex, tempSensitivity);
+
+		return ResponseEntity.ok("{\"message\": \"Temp settings Updated successfully!\"}");
+	}
+
+	@GetMapping("/user/tempsens/{userId}")
+	public String getTempSensSettings(@PathVariable String userId) {
+		return userService.getTempSettings(userId);
+	}
+
+	@PutMapping("/user/lightsens/{userId}")
+	public ResponseEntity<String> updateLightSensSettings(@PathVariable String userId, @RequestBody Map <String, Integer> newLightSensSettings) {
+		System.out.println("Received PUT request for user ID: " + userId + " with new light settings: " + newLightSensSettings);
+
+		int lightSensitivity = newLightSensSettings.getOrDefault("lightSensitivity", 0);
+    	int lightIndex = newLightSensSettings.getOrDefault("lightIndex", 0);
+		userService.setLightSettings(userId, lightIndex, lightSensitivity);
+		
+		return ResponseEntity.ok("{\"message\": \"Light settings Updated successfully!\"}");
+	}
+
+	@GetMapping("/user/lightsens/{userId}")
+	public String getLightSensSettings(@PathVariable String userId) {
+		return userService.getLightSettings(userId);
+	}
 
 
 		
