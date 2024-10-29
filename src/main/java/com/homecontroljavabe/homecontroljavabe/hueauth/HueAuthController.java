@@ -3,12 +3,16 @@ package com.homecontroljavabe.homecontroljavabe.hueauth;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @CrossOrigin(origins = "*")
@@ -36,13 +40,29 @@ public class HueAuthController {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         
         HttpEntity<String> request = new HttpEntity<>(body, headers);
-        ResponseEntity<String> response = restTemplate.postForEntity(tokenUrl, request, String.class);
 
-        if (response.getStatusCode().is2xxSuccessful()) {
-            //Hantera access_token-svar här, t.ex. spara det i databasen
-            return ResponseEntity.ok("Access token received and processed successfully.");
-        } else {
-            return ResponseEntity.status(response.getStatusCode()).body("Failed to retrieve access token.");
+        try {
+            ResponseEntity<HueTokenResponse> response = restTemplate.exchange(tokenUrl, HttpMethod.POST, request, HueTokenResponse.class);
+
+            if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+                // Hämta access token och andra data från responsen
+                HueTokenResponse tokenResponse = response.getBody();
+                String accessToken = tokenResponse.getAccessToken();
+                String refreshToken = tokenResponse.getRefreshToken();
+                int expiresIn = tokenResponse.getExpiresIn();
+
+                // TODO: Spara token i databasen eller annan säker plats
+
+                return ResponseEntity.ok("Access token received successfully: " + accessToken);
+            } else {
+                return ResponseEntity.status(response.getStatusCode()).body("Failed to retrieve access token.");
+            }
+
+        } catch (HttpClientErrorException | HttpServerErrorException ex) {
+            // Fångar fel vid anrop
+            return ResponseEntity.status(ex.getStatusCode()).body("Error occurred: " + ex.getResponseBodyAsString());
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unexpected error: " + ex.getMessage());
         }
     }
 }
