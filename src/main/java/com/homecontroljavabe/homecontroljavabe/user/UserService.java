@@ -76,6 +76,57 @@ public class UserService {
 		}
 	}
 
+	//tempsenssettings
+	public String getTempSettings(String userId) {
+		User user = mongoOperations.findById(userId, User.class);
+		if (user != null) {
+			System.out.println("Index: " + user.getTempIndex() + "Tempsens: " + user.getTempSensitivity());
+			return "{ \"tempIndex\": " + user.getTempIndex() + ", \"tempSensitivity\": " + user.getTempSensitivity() + " }";
+		}
+		return null; 
+	}
+
+	public void setTempSettings(String userId, int tempIndex, int tempSensitivity) {
+		User user = mongoOperations.findById(userId, User.class);
+		
+		System.out.println("Fetching user: " + userId); 
+		if (user != null) {
+			System.out.println("User found: " + user); 
+			
+			user.setTempIndex(tempIndex);
+			user.setTempSensitivity(tempSensitivity);
+			mongoOperations.save(user); 
+			System.out.println("Updated tempsens settings: T: " + tempSensitivity + " I: " + tempIndex);
+		} else {
+			System.out.println("User not found with ID: " + userId); 
+		}
+	}
+
+	//lightsenssettings
+
+	public String getLightSettings(String userId) {
+		User user = mongoOperations.findById(userId, User.class);
+		if (user != null) {
+			System.out.println("Index: " + user.getLightIndex() + "Lightsens: " + user.getLightSensitivity());
+			return "{ \"lightIndex\": " + user.getLightIndex() + ", \"lightSensitivity\": " + user.getLightSensitivity() + " }";
+		}
+		return null; 
+	}
+
+	public void setLightSettings(String userId, int lightIndex, int lightSensitivity) {
+		User user = mongoOperations.findById(userId, User.class);
+		
+		System.out.println("Fetching user: " + userId); 
+		if (user != null) {
+			System.out.println("User found: " + user); 
+			user.setLightIndex(lightIndex);
+			user.setLightSensitivity(lightSensitivity);
+			mongoOperations.save(user); 
+			System.out.println("Updated lightsens settings: T: " + lightSensitivity + " I: " + lightIndex);
+		} else {
+			System.out.println("User not found with ID: " + userId); 
+		}
+	}
 	
 	
 }

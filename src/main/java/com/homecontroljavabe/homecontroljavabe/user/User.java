@@ -16,11 +16,43 @@ public class User {
 	private String password;
 	private String bridgeIp;
 
+
+	//sensors
+	private int tempSensitivity;
+	private int tempIndex;
+
+	private int lightSensitivity;
+	private int lightIndex;
+
 	private List <Device> deviceList = new ArrayList<>();
 
 
 	public String getUserId() {
 		return id;
+	}
+	public int getTempSensitivity() {
+		return tempSensitivity;
+	}
+	public void setTempSensitivity(int tempSensitivity) {
+		this.tempSensitivity = tempSensitivity;
+	}
+	public int getTempIndex() {
+		return tempIndex;
+	}
+	public void setTempIndex(int tempIndex) {
+		this.tempIndex = tempIndex;
+	}
+	public int getLightSensitivity() {
+		return lightSensitivity;
+	}
+	public void setLightSensitivity(int lightSensitivity) {
+		this.lightSensitivity = lightSensitivity;
+	}
+	public int getLightIndex() {
+		return lightIndex;
+	}
+	public void setLightIndex(int lightIndex) {
+		this.lightIndex = lightIndex;
 	}
 	public String getId() {
 		return id;
