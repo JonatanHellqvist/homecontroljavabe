@@ -19,10 +19,10 @@ public class User {
 
 	//sensors
 	private int tempSensitivity;
-	private int tempIndex;
+	private String tempIndex;
 
 	private int lightSensitivity;
-	private int lightIndex;
+	private String lightIndex;
 
 	private List <Device> deviceList = new ArrayList<>();
 
@@ -36,10 +36,10 @@ public class User {
 	public void setTempSensitivity(int tempSensitivity) {
 		this.tempSensitivity = tempSensitivity;
 	}
-	public int getTempIndex() {
+	public String  getTempIndex() {
 		return tempIndex;
 	}
-	public void setTempIndex(int tempIndex) {
+	public void setTempIndex(String  tempIndex) {
 		this.tempIndex = tempIndex;
 	}
 	public int getLightSensitivity() {
@@ -48,10 +48,10 @@ public class User {
 	public void setLightSensitivity(int lightSensitivity) {
 		this.lightSensitivity = lightSensitivity;
 	}
-	public int getLightIndex() {
+	public String getLightIndex() {
 		return lightIndex;
 	}
-	public void setLightIndex(int lightIndex) {
+	public void setLightIndex(String lightIndex) {
 		this.lightIndex = lightIndex;
 	}
 	public String getId() {
