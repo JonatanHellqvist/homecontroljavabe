@@ -97,7 +97,7 @@ public class HueAuthController {
 		headers.set("Authorization", "Bearer " + accessToken);
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		String requestBody = "{\"devicetype\":\"<homecontrol>\"}"; //måste va samma som på hue
+		String requestBody = "{\"devicetype\":\"<homecontrol>\"}"; 
 		HttpEntity<String> request = new HttpEntity<>(requestBody, headers);
 
 		try {
