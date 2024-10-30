@@ -80,13 +80,13 @@ public class UserService {
 	public String getTempSettings(String userId) {
 		User user = mongoOperations.findById(userId, User.class);
 		if (user != null) {
-			System.out.println("Index: " + user.getTempIndex() + "Tempsens: " + user.getTempSensitivity());
-			return "{ \"tempIndex\": " + user.getTempIndex() + ", \"tempSensitivity\": " + user.getTempSensitivity() + " }";
+			System.out.println("TEMPSETTINGS: \n Index: " + user.getTempIndex() + " Tempsens: " + user.getTempSensitivity());
+			return "{ \"tempIndex\": \"" + user.getTempIndex() + "\", \"tempSensitivity\": " + user.getTempSensitivity() + " }";
 		}
 		return null; 
 	}
 
-	public void setTempSettings(String userId, int tempIndex, int tempSensitivity) {
+	public void setTempSettings(String userId, String tempIndex, int tempSensitivity) {
 		User user = mongoOperations.findById(userId, User.class);
 		
 		System.out.println("Fetching user: " + userId); 
@@ -96,7 +96,7 @@ public class UserService {
 			user.setTempIndex(tempIndex);
 			user.setTempSensitivity(tempSensitivity);
 			mongoOperations.save(user); 
-			System.out.println("Updated tempsens settings: T: " + tempSensitivity + " I: " + tempIndex);
+			System.out.println("Updated tempsens settings: T: " + tempSensitivity + " RID: " + tempIndex);
 		} else {
 			System.out.println("User not found with ID: " + userId); 
 		}
@@ -107,13 +107,15 @@ public class UserService {
 	public String getLightSettings(String userId) {
 		User user = mongoOperations.findById(userId, User.class);
 		if (user != null) {
-			System.out.println("Index: " + user.getLightIndex() + "Lightsens: " + user.getLightSensitivity());
-			return "{ \"lightIndex\": " + user.getLightIndex() + ", \"lightSensitivity\": " + user.getLightSensitivity() + " }";
+			System.out.println("LIGHTSETTINGS : " + user.getLightIndex() + "Lightsens: " + user.getLightSensitivity());
+			return "{ \"lightIndex\": \"" + user.getLightIndex() + "\", \"lightSensitivity\": " + user.getLightSensitivity() + " }";
 		}
 		return null; 
 	}
 
-	public void setLightSettings(String userId, int lightIndex, int lightSensitivity) {
+	
+
+	public void setLightSettings(String userId, String lightIndex, int lightSensitivity) {
 		User user = mongoOperations.findById(userId, User.class);
 		
 		System.out.println("Fetching user: " + userId); 
@@ -122,7 +124,7 @@ public class UserService {
 			user.setLightIndex(lightIndex);
 			user.setLightSensitivity(lightSensitivity);
 			mongoOperations.save(user); 
-			System.out.println("Updated lightsens settings: T: " + lightSensitivity + " I: " + lightIndex);
+			System.out.println("Updated lightsens settings: T: " + lightSensitivity + " RID: " + lightIndex);
 		} else {
 			System.out.println("User not found with ID: " + userId); 
 		}
