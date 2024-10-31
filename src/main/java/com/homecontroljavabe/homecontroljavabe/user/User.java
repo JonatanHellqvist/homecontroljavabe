@@ -15,8 +15,7 @@ public class User {
 	private String username;
 	private String password;
 	private String bridgeIp;
-
-
+  
 	//sensors
 	private int tempSensitivity;
 	private String tempIndex;
@@ -25,7 +24,6 @@ public class User {
 	private String lightIndex;
 
 	private List <Device> deviceList = new ArrayList<>();
-
 
 	public String getUserId() {
 		return id;
@@ -36,6 +34,7 @@ public class User {
 	public void setTempSensitivity(int tempSensitivity) {
 		this.tempSensitivity = tempSensitivity;
 	}
+  
 	public String getTempIndex() {
 		return tempIndex;
 	}

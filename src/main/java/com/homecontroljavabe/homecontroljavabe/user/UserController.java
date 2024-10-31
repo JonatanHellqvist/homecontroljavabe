@@ -57,7 +57,7 @@ public class UserController {
 	@PutMapping("/user/tempsens/{userId}/{tempSensitivity}/{tempIndex}")
 	public ResponseEntity<String> updateTempSensSettings(@PathVariable String userId, @PathVariable String tempIndex, @PathVariable int tempSensitivity) {
 		System.out.println("Received PUT request for user ID: " + userId + " with new temp settings: RID: " + tempIndex + "SENS: " + tempSensitivity);
-
+    
 		userService.setTempSettings(userId, tempIndex, tempSensitivity);
 		System.out.println("RID: " + tempIndex);
 		System.out.println("Sens " + tempSensitivity);
