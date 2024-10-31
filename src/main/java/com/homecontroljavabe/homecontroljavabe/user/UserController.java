@@ -61,32 +61,41 @@ public class UserController {
 		return ResponseEntity.ok("{\"message\": \"Bridge IP updated successfully\"}");
 }
 
-	@PutMapping("/user/tempsens/{userId}")
-	public ResponseEntity<String> updateTempSensSettings(@PathVariable String userId, @RequestBody Map <String, Integer> newTempSensSettings) {
-		System.out.println("Received PUT request for user ID: " + userId + " with new temp settings: " + newTempSensSettings);
+	//auth
+	@PutMapping("/user/tempsens/{userId}/{tempSensitivity}/{tempIndex}")
+	public ResponseEntity<String> updateTempSensSettings(@PathVariable String userId, @PathVariable String tempIndex, @PathVariable int tempSensitivity) {
+		System.out.println("Received PUT request for user ID: " + userId + " with new temp settings: RID: " + tempIndex + "SENS: " + tempSensitivity);
 
-		int tempSensitivity = newTempSensSettings.getOrDefault("tempSensitivity", 0);
-		System.out.println("Sens " + tempSensitivity);
-    	int tempIndex = newTempSensSettings.getOrDefault("tempIndex", 0);
-		System.out.println("index " + tempIndex);
 		userService.setTempSettings(userId, tempIndex, tempSensitivity);
+		System.out.println("RID: " + tempIndex);
+		System.out.println("Sens " + tempSensitivity);
 
 		return ResponseEntity.ok("{\"message\": \"Temp settings Updated successfully!\"}");
 	}
-
 	@GetMapping("/user/tempsens/{userId}")
 	public String getTempSensSettings(@PathVariable String userId) {
 		return userService.getTempSettings(userId);
 	}
 
-	@PutMapping("/user/lightsens/{userId}")
-	public ResponseEntity<String> updateLightSensSettings(@PathVariable String userId, @RequestBody Map <String, Integer> newLightSensSettings) {
-		System.out.println("Received PUT request for user ID: " + userId + " with new light settings: " + newLightSensSettings);
+	// @PutMapping("/user/lightsens/{userId}")
+	// public ResponseEntity<String> updateLightSensSettings(@PathVariable String userId, @RequestBody Map <String, Integer> newLightSensSettings) {
+	// 	System.out.println("Received PUT request for user ID: " + userId + " with new light settings: " + newLightSensSettings);
 
-		int lightSensitivity = newLightSensSettings.getOrDefault("lightSensitivity", 0);
-    	int lightIndex = newLightSensSettings.getOrDefault("lightIndex", 0);
-		userService.setLightSettings(userId, lightIndex, lightSensitivity);
+	// 	int lightSensitivity = newLightSensSettings.getOrDefault("lightSensitivity", 0);
+    // 	int lightIndex = newLightSensSettings.getOrDefault("lightIndex", 0);
+	// 	userService.setLightSettings(userId, lightIndex, lightSensitivity);
 		
+	// 	return ResponseEntity.ok("{\"message\": \"Light settings Updated successfully!\"}");
+	// }
+	//auth
+	@PutMapping("/user/lightsens/{userId}/{lightSensitivity}/{lightIndex}")
+	public ResponseEntity<String> updateLightSensSettings(@PathVariable String userId, @PathVariable String lightIndex, @PathVariable int lightSensitivity) {
+		System.out.println("Received PUT request for user ID: " + userId + " with new temp settings: RID: " + lightIndex + "SENS: " + lightSensitivity);
+		
+		userService.setLightSettings(userId, lightIndex, lightSensitivity);
+		System.out.println("RID: " + lightIndex);
+		System.out.println("Sens " + lightSensitivity);
+
 		return ResponseEntity.ok("{\"message\": \"Light settings Updated successfully!\"}");
 	}
 
