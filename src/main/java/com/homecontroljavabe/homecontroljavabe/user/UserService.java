@@ -102,6 +102,7 @@ public class UserService {
 		}
 	}
 
+
 	//lightsenssettings
 
 	public String getLightSettings(String userId) {
@@ -112,8 +113,6 @@ public class UserService {
 		}
 		return null; 
 	}
-
-	
 
 	public void setLightSettings(String userId, String lightIndex, int lightSensitivity) {
 		User user = mongoOperations.findById(userId, User.class);
