@@ -11,7 +11,7 @@ public class ChatRequest {
 	public ChatRequest(String model, String prompt, int n) {
         this.model = model;
         this.messages = new ArrayList<>();
-		this.messages.add(new Message("system", "Svara bara på frågor om smarta hemma lösningar"));
+		this.messages.add(new Message("system", "Svara bara på frågor om smarta hemma lösningar, eller frågor angående hur man använder denna sidan"));
 		this.messages.add(new Message("user",prompt));
         this.n = n;
     }
