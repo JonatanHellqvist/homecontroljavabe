@@ -1,22 +1,15 @@
 package com.homecontroljavabe.homecontroljavabe.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.data.mongodb.core.aggregation.VariableOperators.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import com.homecontroljavabe.homecontroljavabe.user.UserService;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Map;
-
-
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -51,7 +44,7 @@ public class UserController {
 	@PutMapping("/user/tempsens/{userId}/{tempSensitivity}/{tempIndex}")
 	public ResponseEntity<String> updateTempSensSettings(@PathVariable String userId, @PathVariable String tempIndex, @PathVariable int tempSensitivity) {
 		System.out.println("Received PUT request for user ID: " + userId + " with new temp settings: RID: " + tempIndex + "SENS: " + tempSensitivity);
-
+    
 		userService.setTempSettings(userId, tempIndex, tempSensitivity);
 		System.out.println("RID: " + tempIndex);
 		System.out.println("Sens " + tempSensitivity);
@@ -78,7 +71,6 @@ public class UserController {
 	@GetMapping("/user/lightsens/{userId}")
 	public String getLightSensSettings(@PathVariable String userId) {
 		return userService.getLightSettings(userId);
-	}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////|METODER FÖR LOKAL ANVÄNDING AV BRIDGE|//////////////////////////////////////////////////////////////
@@ -105,7 +97,6 @@ public class UserController {
 		
 	// 	return ResponseEntity.ok("{\"message\": \"Light settings Updated successfully!\"}");
 	// }
-		
 }
 	
 	
