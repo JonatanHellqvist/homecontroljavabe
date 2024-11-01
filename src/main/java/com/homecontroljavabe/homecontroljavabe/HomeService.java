@@ -15,14 +15,14 @@ public class HomeService {
 		this.mongoOperations = mongoOperations;
 	}
 
-	public List<HomeDevice> addHomeDevices(List <HomeDevice> devices) {
-		List <HomeDevice> savedDevices = new ArrayList<>();
-		for (HomeDevice device : devices) {
-			mongoOperations.save(device);
-			savedDevices.add(device);
-        }
-		return savedDevices;
-	}
+	// public List<HomeDevice> addHomeDevices(List <HomeDevice> devices) {
+	// 	List <HomeDevice> savedDevices = new ArrayList<>();
+	// 	for (HomeDevice device : devices) {
+	// 		mongoOperations.save(device);
+	// 		savedDevices.add(device);
+    //     }
+	// 	return savedDevices;
+	// }
 
 	public List <HomeDevice> getAllHomeDevices() {
 		return mongoOperations.findAll(HomeDevice.class);

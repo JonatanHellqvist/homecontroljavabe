@@ -6,9 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @CrossOrigin(origins = "*")
 public class HueTokenResponse {
 
-   /**
-     * Responsmodell för att hantera token respons från Philips Hue API.
-     */
+   ////////////////////////////////////PILLA INTE DÅ SMÄLLER DET///////////////////////////////////////////////////////////////////
+   /// 
         @JsonProperty("access_token")
         private String accessToken;
 
@@ -22,9 +21,8 @@ public class HueTokenResponse {
         private String tokenType;
 
         @JsonProperty("username")
-        private String username; // Antagande om att användarnamnet är med i svaret
+        private String username; 
 
-        // Getters och Setters
         public String getAccessToken() {
             return accessToken;
         }

@@ -48,35 +48,6 @@ public class UserService {
 		return mongoOperations.findOne(query, User.class);
 	}
 
-	// public String getUserBridgeIp(String id) {
-	// 	User user = mongoOperations.findById(id, User.class);
-	// 	return (user != null) ? user.getBridgeIp() : null;
-	// }
-
-	public String getBridgeIp(String id) {
-		User user = mongoOperations.findById(id, User.class);
-		if (user != null) {
-			System.out.println(user.getBridgeIp());
-			return user.getBridgeIp();
-		}
-		return null; 
-	}
-
-	public void setBridgeIp(String id, String newBridgeIp) {
-		User user = mongoOperations.findById(id, User.class);
-		
-		System.out.println("Fetching user: " + id); 
-		System.out.println("New Bridge IP: " + newBridgeIp); 
-		if (user != null) {
-			System.out.println("User found: " + user); 
-			user.setBridgeIp(newBridgeIp);
-			mongoOperations.save(user); 
-		} else {
-			System.out.println("User not found with ID: " + id); 
-		}
-	}
-
-	//tempsenssettings
 	public String getTempSettings(String userId) {
 		User user = mongoOperations.findById(userId, User.class);
 		if (user != null) {
@@ -102,9 +73,6 @@ public class UserService {
 		}
 	}
 
-
-	//lightsenssettings
-
 	public String getLightSettings(String userId) {
 		User user = mongoOperations.findById(userId, User.class);
 		if (user != null) {
@@ -128,6 +96,36 @@ public class UserService {
 			System.out.println("User not found with ID: " + userId); 
 		}
 	}
-	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////|METODER FÖR LOKAL ANVÄNDING AV BRIDGE|//////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// public String getUserBridgeIp(String id) {
+	// 	User user = mongoOperations.findById(id, User.class);
+	// 	return (user != null) ? user.getBridgeIp() : null;
+	// }
+
+	// public String getBridgeIp(String id) {
+	// 	User user = mongoOperations.findById(id, User.class);
+	// 	if (user != null) {
+	// 		System.out.println(user.getBridgeIp());
+	// 		return user.getBridgeIp();
+	// 	}
+	// 	return null; 
+	// }
+
+	// public void setBridgeIp(String id, String newBridgeIp) {
+	// 	User user = mongoOperations.findById(id, User.class);
+		
+	// 	System.out.println("Fetching user: " + id); 
+	// 	System.out.println("New Bridge IP: " + newBridgeIp); 
+	// 	if (user != null) {
+	// 		System.out.println("User found: " + user); 
+	// 		user.setBridgeIp(newBridgeIp);
+	// 		mongoOperations.save(user); 
+	// 	} else {
+	// 		System.out.println("User not found with ID: " + id); 
+	// 	}
+	// }
 	
 }

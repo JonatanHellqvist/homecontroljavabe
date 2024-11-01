@@ -20,11 +20,6 @@ public class MongoChangeStreamService {
     @Autowired
     private MongoClient mongoClient;
 
-
-    // public MongoChangeStreamService() {
-    //     startChangeStreamListener();
-    // }
-
 	@Scheduled(initialDelay =1000, fixedRate = Long.MAX_VALUE)
     public void startChangeStreamListener() {
         Thread thread = new Thread(() -> {
