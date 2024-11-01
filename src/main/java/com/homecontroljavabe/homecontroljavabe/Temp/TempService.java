@@ -20,7 +20,6 @@ public class TempService {
 	public Temp addDht11SensorData (Temp temp) {
 		temp.setTimeStamp(LocalDateTime.now());
 		return mongoOperations.insert(temp);
-
 	}
 
 	public List<Temp> getAllDht11SensorData () {
@@ -29,10 +28,9 @@ public class TempService {
 
 	public Temp getLatestDht11SensorData() {
 		Query query = new Query();
-		query.with(Sort.by(Sort.Order.desc("timeStamp"))); // Sortera efter timestamp i fallande ordning
-		query.limit(1); // Hämta bara den senaste avläsningen
+		query.with(Sort.by(Sort.Order.desc("timeStamp"))); 
+		query.limit(1); //Hämta bara den senaste avläsningen
 		return mongoOperations.findOne(query, Temp.class);
-	}
-		
+	}		
 }
 

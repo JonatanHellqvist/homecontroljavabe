@@ -16,7 +16,6 @@ public class User {
 	private String password;
 	private String bridgeIp;
 
-
 	//sensors
 	private int tempSensitivity;
 	private String tempIndex;

@@ -20,7 +20,8 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
-
+////////////////////////////////////PILLA INTE DÅ SMÄLLER DET///////////////////////////////////////////////////////////////////
+   /// 
 
 @CrossOrigin(origins = "*")
 @RestController

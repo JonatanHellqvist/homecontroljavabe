@@ -14,7 +14,6 @@ import java.util.ArrayList;
 @Service
 public class DeviceService {
 	
-
 	private final MongoOperations mongoOperations;
 
 	public DeviceService(MongoOperations mongoOperations) {
@@ -57,33 +56,5 @@ public class DeviceService {
 		return mongoOperations.findOne(query, Device.class);
 	}
 	
-
-//  public ResponseEntity<String> toggleDevice(String userId, int hueIndex, Map<String, Boolean> state) {
-        
-//         Device device = getDeviceByHueIndex(hueIndex, userId);
-
-//         if (device == null) {
-//             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User not authorized for this device");
-//         }
-
-//         boolean newState = state.getOrDefault("on", false);
-        
-//         //Här uppdaterar vi tillståndet i deviceData
-//         Document deviceData = Document.parse(device.getDeviceData());
-//         deviceData.put("state", new Document("on", newState)); // Uppdatera tillståndet
-
-//         //Utför uppdateringen i databasen
-//         UpdateResult updateResult = mongoOperations.updateFirst(
-//             Query.query(Criteria.where("_id").is(device.getId())),
-//             Update.update("deviceData", deviceData.toJson()), // Spara som JSON-sträng
-//             Device.class
-//         );
-
-//         if (updateResult.getMatchedCount() == 0) {
-//             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update device status");
-//         }
-
-//         return ResponseEntity.ok("Device toggled successfully");
-//     }
 }
 

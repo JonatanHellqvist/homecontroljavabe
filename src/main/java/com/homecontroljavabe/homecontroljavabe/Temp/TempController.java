@@ -31,6 +31,5 @@ public class TempController {
 	@GetMapping("/get-latest-dht11-sensor-data")
 	public Temp getLatestDht11SensorData() {
     	return tempService.getLatestDht11SensorData();
-}
-	
+	}	
 }

@@ -15,7 +15,6 @@ public class HomeController {
 
 	private HomeService homeService;
 
-	
 	public HomeController(HomeService homeService) {
 		this.homeService = homeService;
 	}
@@ -34,12 +33,8 @@ public class HomeController {
 		return homeService.getAllHomeDevices();
 	}
 
-	@PostMapping("/add-all-home-devices")
-	public List<HomeDevice> postAllHomeDevicesToDb(@RequestBody List<HomeDevice> devices) {
-		return homeService.addHomeDevices(devices);
-	}
-	
-	
-	
-	
+	// @PostMapping("/add-all-home-devices")
+	// public List<HomeDevice> postAllHomeDevicesToDb(@RequestBody List<HomeDevice> devices) {
+	// 	return homeService.addHomeDevices(devices);
+	// }
 }
